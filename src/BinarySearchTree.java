@@ -44,4 +44,25 @@ public class BinarySearchTree {
         }
 
     }
+    public void InOrder(Node node){
+        if (node!=null){
+            InOrder(node.left);
+            System.out.printf("%d ,",node.ID);
+            InOrder(node.right);
+        }
+    }
+    public void preOrder(Node node){
+        if (node!=null){
+            System.out.printf("%d ,",node.ID);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+    public void postOrder(Node node){
+        if (node!=null){
+            postOrder(node.left);
+            postOrder(node.right);
+            System.out.printf("%d ,",node.ID);
+        }
+    }
 }
