@@ -65,7 +65,7 @@ public class BinarySearchTree {
             System.out.printf("%d ,",node.ID);
         }
     }
-    public Node SearchbyId(int id ){
+    public Node SearchById(int id ){
         Node temp = root;
         while (temp.ID!=id){
             if (id <= temp.ID) {
@@ -79,4 +79,5 @@ public class BinarySearchTree {
         System.out.printf("id : %d  FirstName : %s and LastName : %s", temp.ID, temp.FirstName, temp.LastName);
         return temp;
     }
+
 }
