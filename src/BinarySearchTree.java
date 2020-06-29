@@ -65,4 +65,18 @@ public class BinarySearchTree {
             System.out.printf("%d ,",node.ID);
         }
     }
+    public Node SearchbyId(int id ){
+        Node temp = root;
+        while (temp.ID!=id){
+            if (id <= temp.ID) {
+                temp = temp.left;
+            }else {
+                temp = temp.right;
+            }
+            if (temp==null)
+                return null;
+        }
+        System.out.printf("id : %d  FirstName : %s and LastName : %s", temp.ID, temp.FirstName, temp.LastName);
+        return temp;
+    }
 }
