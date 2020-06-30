@@ -1,15 +1,16 @@
 public class BinarySearchTree {
     class Node{
-        String FirstName , LastName ;
-        int ID;
+        String Name;
+        int ID,Unit;
         Node left,right;
 
-        public Node(int ID , String firstName, String lastName ) {
-            FirstName = firstName;
-            LastName = lastName;
+        public Node(int ID , int unit , String name) {
+            Name = name;
+            right=null;
+            left=null;
             this.ID = ID;
-            this.right=null;
-            this.right=null;
+            Unit=unit;
+
         }
     }
     Node root;
@@ -18,8 +19,8 @@ public class BinarySearchTree {
     public BinarySearchTree() {
         this.root = null;
     }
-    public void Insert(int id , String fname , String lname){
-        Node node=new Node(id,fname,lname);
+    public void Insert(int id ,int unit ,String name ){
+        Node node=new Node(id,unit,name);
         if(root==null){
             root=node;
         }
@@ -76,7 +77,7 @@ public class BinarySearchTree {
             if (temp==null)
                 return null;
         }
-        System.out.printf("id : %d  FirstName : %s and LastName : %s", temp.ID, temp.FirstName, temp.LastName);
+        System.out.printf("id : %d  Name : %s and Unit count : %d", temp.ID, temp.Name,temp.Unit);
         return temp;
     }
 
