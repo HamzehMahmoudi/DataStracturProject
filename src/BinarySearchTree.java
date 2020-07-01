@@ -80,5 +80,75 @@ public class BinarySearchTree {
         System.out.printf("id : %d  Name : %s and Unit count : %d", temp.ID, temp.Name,temp.Unit);
         return temp;
     }
+    public Node SearchByUnit(int unit ){/*TODO:SearchByUnit*/}
+    public Node SearchByName(String name){/*TODO:SearchByName*/}
+    public boolean RemoveByID(int id) {
+        Node node = root;
+        Node parent = root;
+        boolean isLeft = true;
+        while (node.ID != id) {
+            parent = node;
+            if (id < node.ID) {
+                isLeft = true;
+                node = node.left;
+            } else {
+                isLeft = false;
+                node = node.right;
+            }
+            if (node == null)
+                return false;
+        }
+        if (node.left == null && node.right == null) {
+            if (node == root)
+                root = null;
+            else if (isLeft)
+                parent.left = null;
+            else
+                parent.right = null;
+        }
+        else if (node.right == null) {
+                if (node == root)
+                    root = node.left;
+                else if (isLeft)
+                parent.left = node.left;
+                parent.right = node.left;
+        }
+        else if (node.left == null) {
+             if (node == root)
+                root = node.right;
+            else if (isLeft)
+                parent.left = node.right;
+            else
+                parent.right = node.right;
+        }
 
+        else {
+            Node replacement = getReplacementNode(node);
+            if (node == root)
+            root = replacement;
+            else if (isLeft)
+            parent.left = replacement;
+            else
+            parent.right = replacement;
+            replacement.left = node.left;
+        }
+        return true;
+    }
+    public boolean RemoveBYUnit(int unit){/*TODO:RemoveByUnit */ return true;}
+    public boolean RemoveByName(String name) {/*TODO:RemoveByName */ return true;}
+    public Node getReplacementNode(Node replacedNode) {
+        Node replacementParent = replacedNode;
+        Node replacement = replacedNode;
+        Node focusNode = replacedNode.right;
+        while (focusNode != null) {
+            replacementParent = replacement;
+            replacement = focusNode;
+            focusNode = focusNode.left;
+        }
+        if (replacement != replacedNode.right) {
+            replacementParent.left = replacement.right;
+            replacement.right = replacedNode.right;
+        }
+        return replacement;
+    }
 }
