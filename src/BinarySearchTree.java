@@ -19,6 +19,15 @@ public class BinarySearchTree {
     public BinarySearchTree() {
         this.root = null;
     }
+    public int TreeHeight(Node root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int lsubtree = TreeHeight(root.left);
+            int rsubtree = TreeHeight(root.right);
+            return Math.max(lsubtree, rsubtree) + 1;
+        }
+    }
     public void Insert(int id ,int unit ,String name ){
         Node node=new Node(id,unit,name);
         if(root==null){
@@ -52,18 +61,35 @@ public class BinarySearchTree {
             InOrder(node.right);
         }
     }
-    public void preOrder(Node node){
+    public void PreOrder(Node node){
         if (node!=null){
             System.out.printf("%d ,",node.ID);
-            preOrder(node.left);
-            preOrder(node.right);
+            PreOrder(node.left);
+            PreOrder(node.right);
         }
     }
-    public void postOrder(Node node){
+    public void PostOrder(Node node){
         if (node!=null){
-            postOrder(node.left);
-            postOrder(node.right);
+            PostOrder(node.left);
+            PostOrder(node.right);
             System.out.printf("%d ,",node.ID);
+        }
+    }
+    public void BFSr(){
+        int height = TreeHeight(root);
+        for(int i = 0; i < height; i++){
+            BFSTraversal(root, i);
+        }
+    }
+    public void BFSTraversal(Node node, int level){
+        if(node == null){
+            return;
+        }
+        if(level == 0){
+            System.out.printf("%d ,",node.ID);
+        }else{
+            BFSTraversal(node.left, level-1);
+            BFSTraversal(node.right, level-1);
         }
     }
     public Node SearchById(int id ){
