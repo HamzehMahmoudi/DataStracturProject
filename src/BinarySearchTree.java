@@ -1,3 +1,6 @@
+import java.util.*;
+
+
 public class BinarySearchTree {
     class Node{
         String Name;
@@ -14,6 +17,8 @@ public class BinarySearchTree {
         }
     }
     Node root;
+    Map<Integer,Integer> u = new HashMap<>();
+    Map<String,Integer> n = new HashMap<>();
 
 
     public BinarySearchTree() {
@@ -30,6 +35,8 @@ public class BinarySearchTree {
     }
     public void Insert(int id ,int unit ,String name ){
         Node node=new Node(id,unit,name);
+        u.put(node.Unit,node.ID);
+        n.put(node.Name,node.ID);
         if(root==null){
             root=node;
         }
@@ -52,6 +59,7 @@ public class BinarySearchTree {
 
 
         }
+
 
     }
     public void InOrder(Node node){
@@ -106,8 +114,14 @@ public class BinarySearchTree {
         System.out.printf("id : %d  Name : %s and Unit count : %d", temp.ID, temp.Name,temp.Unit);
         return temp;
     }
-    public Node SearchByUnit(int unit ){/*TODO:SearchByUnit*/}
-    public Node SearchByName(String name){/*TODO:SearchByName*/}
+    public Node SearchByUnit(int unit ){
+        int id=u.get(unit);
+        SearchById(id);
+    }
+    public Node SearchByName(String name){
+        int id = n.get(name);
+        SearchById(id);
+    }
     public boolean RemoveByID(int id) {
         Node node = root;
         Node parent = root;
@@ -160,8 +174,14 @@ public class BinarySearchTree {
         }
         return true;
     }
-    public boolean RemoveBYUnit(int unit){/*TODO:RemoveByUnit */ return true;}
-    public boolean RemoveByName(String name) {/*TODO:RemoveByName */ return true;}
+    public boolean RemoveBYUnit(int unit){
+        int id = u.get(unit);
+        RemoveByID(id);
+    }
+    public boolean RemoveByName(String name) {
+        int id = n.get(name);
+        RemoveByID(id);
+    }
     public Node getReplacementNode(Node replacedNode) {
         Node replacementParent = replacedNode;
         Node replacement = replacedNode;
